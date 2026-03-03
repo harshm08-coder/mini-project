@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+textarea {
+    width: 80%;
+    max-width: 700px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: vertical;
+}
+input[type="file"] {
+    font-size: 16px;
+    padding: 8px;
+    margin-bottom: 20px;
+    background-color: #f9fafc;
+}
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    width: 85%;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: left;
+    padding: 20px;
+    background-color: #f9fafc;
+    border-left: 6px solid #4CAF50;
+    border-radius: 8px;
+    white-space: normal;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.result h2 {
+    color: #2a6ebb;
+    margin-top: 20px;
+}
+
+.result h3 {
+    color: #333;
+    margin-top: 15px;
+}
+
+.result table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 20px 0;
+}
+
+.result table, .result th, .result td {
+    border: 1px solid #ccc;
+}
+
+.result th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    text-align: left;
+}
+
+.result td {
+    padding: 8px;
+}
+
+.result hr {
+    border: none;
+    border-top: 2px solid #4CAF50;
+    margin: 20px 0;
+}
+
+.response-time {
+    font-weight: bold;
+    margin-top: 10px;
+}
+/* Hide the default file input */
+#resumeFile {
+    display: none;
+}
+
+/* Style the custom button */
+.file-upload-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.file-upload-btn:hover {
+    background-color: #45a049;
+}
+
+/* Display selected file name nicely */
+#fileName {
+    margin-left: 10px;
+    font-style: italic;
+    color: #555;
+}

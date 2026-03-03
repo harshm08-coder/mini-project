@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Marked.js to render Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<h1>AI Resume Analyzer</h1>
+<br>
+<div class="file-upload-wrapper">
+    <input type="file" id="resumeFile" accept=".pdf,.docx,.txt">
+    <button type="button" class="file-upload-btn" onclick="document.getElementById('resumeFile').click()">
+        Choose File
+    </button>
+    <span id="fileName">No file chosen</span>
+</div>
+<br>
+<button onclick="analyzeFile()">Analyze Uploaded Resume</button>
+<br>
+<h3>Result:</h3>
+<div id="result" class="result">AI analysis will appear here...</div>
+
+<script>
+async function analyzeFile() {
+    const fileInput = document.getElementById("resumeFile");
+    if (fileInput.files.length === 0) {
+        alert("Please upload a resume file first!");
+        return;
+    }
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "<p>Analyzing...</p>";
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/analyze-file", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) throw new Error("Network response was not OK");
+
+        const data = await response.json();
+
+        // Use marked.js to render AI Markdown output as HTML
+        resultDiv.innerHTML = marked.parse(data.analysis) + 
+            `<p class="response-time">Response Time: ${data.response_time ?? "N/A"} sec</p>`;
+
+    } catch (error) {
+        resultDiv.innerHTML = `<p style="color:red;">Error: Could not fetch AI analysis.<br>${error}</p>`;
+        console.error(error);
+    }
+}
+const fileInput = document.getElementById("resumeFile");
+const fileNameSpan = document.getElementById("fileName");
+
+fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+        fileNameSpan.textContent = fileInput.files[0].name;
+    } else {
+        fileNameSpan.textContent = "No file chosen";
+    }
+});
+</script>
+
+</body>
+</html>
